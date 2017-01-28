@@ -1,41 +1,48 @@
-[{ "testclasses/TaskModelWrapper.cs": 
+[
+{ "testclasses/ExampleClass.cs": 
 [
   {
     "isPublic": true,
-    "static": true,
-    "type": "string",
-    "name": "CurrentTime"
-  },
-  {
-    "isPublic": true,
-    "static": true,
+    "static": false,
     "type": "string",
     "name": "Name"
   },
   {
-    "isPublic": false,
+    "isPublic": true,
+    "static": false,
+    "type": "string",
+    "name": "LastName"
+  },
+  {
+    "isPublic": true,
     "static": false,
     "type": "int",
-    "name": "Something"
+    "name": "Age"
+  },
+  {
+    "isPublic": true,
+    "static": false,
+    "type": "bool",
+    "name": "Gender"
   }
 ]
 },
-{ "testclasses/TaskModel.cs": 
+{ "testclasses/OtherExampleClass.cs": 
 [
   {
     "isPublic": false,
     "static": true,
-    "type": "IEnumerable<string>",
-    "name": "CurrentTime"
-  },
-  {
-    "isPublic": false,
-    "static": false,
-    "type": "cuteGrill",
-    "name": "Anime"
+    "type": "List<string>",
+    "name": "Products"
   },
   {
     "isPublic": true,
+    "static": true,
+    "type": "int",
+    "name": "NumOfItems"
+  },
+  {
+    "isPublic": false,
     "static": false,
     "type": "object",
     "name": "Another"
