@@ -39,22 +39,27 @@ my_hash.each do | metadata |
       properties += propertyAndBackfield[0]
       backingFields += propertyAndBackfield[1]
     end
-    properties = properties + indentLevel + Lib::EndPropertiesRegion + "\n\n"
-    backingFields = backingFields + indentLevel + Lib::EndMembersRegion + "\n\n"
+    properties = properties + indentLevel + Lib::EndPropertiesRegion
+    backingFields = backingFields + indentLevel + Lib::EndMembersRegion
 
+    # finds the regions and pastes the generated code
     file.gsub! Lib::RegPropertiesRegion, properties
 
     file.gsub! Lib::RegMembersRegion, backingFields
 
-    # save file and print operations done
-    #File.open("TaskModelWrapper.cs", "w") {|f| f.write(file) }
-    #puts "Created " + p.to_s + " properties for " + "#{key}" + " file"
+    # gets the path without the file 
+    path = currentFile.match(Lib::RegPath)
 
-    #m = key.match /([^\/]+)(?=\.([0-9a-z]+)(?:[\?#]|$))/
-    #indexing at 0 and 1 gives filename, indexing at 2 gives file extension (without dot).
-    #puts m[1]
+    # fparts is the filename in parts fparts[1] is the name, fparts[2] is the extension (without dot)
+    fparts = currentFile.match(Lib::RegFilename)
 
-    puts file
-    puts "-----------------------------------------------------------------------------"
+    #create a temporal filename path
+    tempFileWithPath = path[1] + fparts[1] + "_temp" + "." + fparts[2]
+
+    # save temporal file and rename it to the original
+    File.open(tempFileWithPath, "w") {|f| f.write(file) }
+    File.rename(tempFileWithPath, currentFile) # no need to delete the original before rename
+
+    puts "Created " + p.to_s + " properties for " + "#{currentFile}" + " file\n"
   end
 end

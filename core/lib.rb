@@ -30,7 +30,7 @@ module Lib
   def indentStartingLevel; @@isl end
   def indentStartingLevel= v; @@isl = v end
 
-
+# Creates each property and member
 def Lib.createProperty(property)
     # could check if length == 4 to validate
     clrProperty = ""
@@ -88,5 +88,10 @@ def Lib.createProperty(property)
   RegPropertiesRegion = Regexp.new(Lib::BeginPropertiesRegion + '(.*?)' + Lib::EndPropertiesRegion, Regexp::MULTILINE)
   # Match the region for the Members
   RegMembersRegion = Regexp.new(Lib::BeginMembersRegion + '(.*?)' + Lib::EndMembersRegion, Regexp::MULTILINE)
+  # Finds the filename with extension
+  RegFilename = /([^\/]+)(?=\.([0-9a-z]+)(?:[\?#]|$))/
+  # Finds the path of a file
+  RegPath = /(.*?\/)[^\/]*?\.\S*/
+  
 
 end
